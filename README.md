@@ -6,6 +6,8 @@ Here's the [YouTube Video](https://youtu.be/9AXP7tCI9PI).
 
 ## Installation
 
+* Install C and C++ support in Visual Studio
+
 Install [Langchain](https://github.com/hwchase17/langchain) and other required packages.
 ```
 pip install langchain openai chromadb tiktoken unstructured
