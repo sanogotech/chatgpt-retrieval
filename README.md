@@ -26,6 +26,8 @@ En résumé, bien que vous ne puissiez pas ajouter directement de nouvelles donn
 
 * Install C and C++ support in Visual Studio
 
+* https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170
+
 Install [Langchain](https://github.com/hwchase17/langchain) and other required packages.
 ```
 pip install langchain openai chromadb tiktoken unstructured
