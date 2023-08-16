@@ -32,8 +32,8 @@ if PERSIST and os.path.exists("persist"):
     index = VectorStoreIndexWrapper(vectorstore=vectorstore)
 else:
     # Charger les données à partir du fichier "politiqueconges.txt"
-    loader = TextLoader("data/politiqueconges.txt")  # Utilisez cette ligne si vous avez seulement besoin de data.txt
-    # loader = DirectoryLoader("data/")  # Utilisez cette ligne pour charger un répertoire de documents
+    ##loader = TextLoader("data/politiqueconges.txt")  # Utilisez cette ligne si vous avez seulement besoin de data.txt
+    loader = DirectoryLoader("data/")  # Utilisez cette ligne pour charger un répertoire de documents
     if PERSIST:
         index = VectorstoreIndexCreator(vectorstore_kwargs={"persist_directory": "persist"}).from_loaders([loader])
     else:

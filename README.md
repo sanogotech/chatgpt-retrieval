@@ -4,6 +4,15 @@ Simple script to use ChatGPT on your own files.
 
 Here's the [YouTube Video](https://youtu.be/9AXP7tCI9PI).
 
+## Docs
+
+- https://www.melvinvivas.com/chatgpt-openai-natural-language-to-api-call
+
+- https://www.davidgentile.net/langchain-indexes-document-loaders/
+
+- https://www.linkedin.com/pulse/transforming-question-answering-openai-langchain-harnessing-routu/
+
+- https://blog.nextideatech.com/chat-with-documents-using-langchain-gpt-4-python/
 
 ##   Le modèle GPT-3.5-turbo de OpenAI est utilisé pour générer des réponses, sans pour autant inclure de nouvelles données.
 
