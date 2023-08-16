@@ -4,6 +4,8 @@ Simple script to use ChatGPT on your own files.
 
 Here's the [YouTube Video](https://youtu.be/9AXP7tCI9PI).
 
+![AI  Full 360](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/AIfullcompenent.jpg)
+
 ## Docs
 
 - https://www.melvinvivas.com/chatgpt-openai-natural-language-to-api-call
