@@ -35,6 +35,11 @@ En résumé, bien que vous ne puissiez pas ajouter directement de nouvelles donn
 
 ## Installation
 
+```
+python --version
+Python 3.9.13
+```
+
 * Install C and C++ support in Visual Studio
 
 * https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170
