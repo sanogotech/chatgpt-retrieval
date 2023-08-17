@@ -4,6 +4,8 @@ Simple script to use ChatGPT on your own files.
 
 Here's the [YouTube Video](https://youtu.be/9AXP7tCI9PI).
 
+![AI  Full 360](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/AIfullcompenent.jpg)
+
 ## Docs
 
 - https://www.melvinvivas.com/chatgpt-openai-natural-language-to-api-call
@@ -32,6 +34,11 @@ Variation des exemples : Utilisez une variété d'exemples pour couvrir différe
 En résumé, bien que vous ne puissiez pas ajouter directement de nouvelles données au modèle GPT-3.5-turbo, vous pouvez façonner les instructions et les exemples que vous fournissez pour que le modèle génère des réponses en tenant compte de vos propres données et scénarios. N'oubliez pas de suivre les meilleures pratiques de formulation d'instructions pour obtenir des résultats optimaux.
 
 ## Installation
+
+```
+python --version
+Python 3.9.13
+```
 
 * Install C and C++ support in Visual Studio
 
