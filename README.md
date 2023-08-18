@@ -12,6 +12,8 @@ Here's the [YouTube Video](https://youtu.be/9AXP7tCI9PI).
 
 - https://www.davidgentile.net/langchain-indexes-document-loaders/
 
+- https://www.geeksforgeeks.org/python-downloading-captions-from-youtube/
+
 - https://www.linkedin.com/pulse/transforming-question-answering-openai-langchain-harnessing-routu/
 
 - https://blog.nextideatech.com/chat-with-documents-using-langchain-gpt-4-python/
