@@ -57,6 +57,50 @@ Let's create a vector store using the Chroma DB from the documents we loaded and
 from langchain.vectorstores import Chroma
 db = Chroma.from_documents(docs, embeddings)
   ```
+
+## Vector Database
+
+With the rise of AI, vector databases are becoming more popular. But what exactly is a vector database and when should you use it?
+
+* What is a vector database?
+Traditional search engines use full-text search, but NLPs like ChatGPT and Bing AI use semantic search or similarity search, a type of search that considers not only the characters match, but also the meaning of the words. This feature of semantic search is powered by vector databases.
+
+ Recently Google also started using semantic search
+ 
+
+* Full-text search VS Semantic search
+Let's compare these two types of search.
+
+- Full-text search
+Search for a word or phrase in large amounts of text
+The search engine returns a list of documents that contain the search term
+
+```
+SELECT title, content
+FROM documents
+WHERE search_vector @@ plainto_tsquery('english', 'example search');
+
+```
+
+- Semantic search
+Search for a word or phrase in large amounts of text
+The search engine will return a list of documents that contain the search term or have a similar meaning.
+
+*  Ocean // Sea (mimilar meaning)
+  
+How the vector database knows which vectors are similar?
+
+Querying the database using math formulas to find the closest vectors in a high-dimensional space
+
+* Euclidean distance
+* Cosine similarity
+
+* Machine learning algorithms
+
+  - K-nearest neighbors (KNN)
+  - Approximate nearest neighbors (ANN)
+  -
+* Indexing
 ## Installation
 
 ```
