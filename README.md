@@ -121,6 +121,8 @@ Most popular vector databases
 - Postgres (pg_vector)
 - Weaviate
 
+  ![ Data to Vector deep learning](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/deeplearningvector.png)
+
 ## Installation
 
 ```
