@@ -35,6 +35,14 @@ Variation des exemples : Utilisez une variété d'exemples pour couvrir différe
 
 En résumé, bien que vous ne puissiez pas ajouter directement de nouvelles données au modèle GPT-3.5-turbo, vous pouvez façonner les instructions et les exemples que vous fournissez pour que le modèle génère des réponses en tenant compte de vos propres données et scénarios. N'oubliez pas de suivre les meilleures pratiques de formulation d'instructions pour obtenir des résultats optimaux.
 
+## Using Langchain and Open Source Vector DB Chroma for Semantic Search with OpenAI's LLM
+
+* https://github.com/PradipNichite/Youtube-Tutorials/blob/main/Chroma_DB_with_Langchain.ipynb
+  
+  ```
+  pip install  openai langchain sentence_transformers chromadb unstructured -q
+   ```
+
 ## Installation
 
 ```
