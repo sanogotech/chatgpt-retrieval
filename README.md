@@ -43,6 +43,18 @@ En résumé, bien que vous ne puissiez pas ajouter directement de nouvelles donn
   pip install  openai langchain sentence_transformers chromadb unstructured -q
    ```
 
+Creating Vector Store with Chroma DB
+Vector stores serve as a prevalent method for handling and searching through unstructured data. The standard process involves creating embeddings from the unstructured data, saving these generated vectors, and then, during a query, embedding the unstructured query to retrieve the 'most similar' vectors to this embedded query. The role of a vector store is primarily to facilitate this storage of embedded data and execute the similarity search.
+
+Importantly, Langchain offers support for various vector stores, including Chroma, Pinecone, and others. This flexibility enables users to choose the most suitable vector store based on their specific requirements and preferences.
+
+Let's create a vector store using the Chroma DB from the documents we loaded and split.
+
+
+  ```
+from langchain.vectorstores import Chroma
+db = Chroma.from_documents(docs, embeddings)
+  ```
 ## Installation
 
 ```
