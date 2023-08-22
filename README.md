@@ -18,6 +18,10 @@ Here's the [YouTube Video](https://youtu.be/9AXP7tCI9PI).
 
 - https://blog.nextideatech.com/chat-with-documents-using-langchain-gpt-4-python/
 
+##  Code Sample
+
+- https://github.com/sanogotech/AI_GPTSamples
+  
 ##   Le modèle GPT-3.5-turbo de OpenAI est utilisé pour générer des réponses, sans pour autant inclure de nouvelles données.
 
 
