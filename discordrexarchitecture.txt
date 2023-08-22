@@ -1,0 +1,73 @@
+
+Source: https://thenewstack.io/how-discord-migrated-trillions-of-messages-to-scylladb/
+
+How Discord Migrated Trillions of Messages to ScyllaDB
+When popular social networking service Discord migrated its messages cluster from Cassandra to ScyllaDB, it reduced message latencies from 200 milliseconds to 5 milliseconds.
+
+
+Popular social networking service Discord migrated its messages cluster from the open source Cassandra database system to distributed data store ScyllaDB and reduced latencies from 200 milliseconds to 5 milliseconds.
+
+The ScyllaDB Summit 2023 opened last Wednesday with a talk, “How Discord Migrated Trillions of Messages from Cassandra to ScyllaDB,” given by Discord Senior Software Engineer Bo Ingram. It’s not a question per se, but the answer is a lot of work. There was creative engineering in the software and hardware that brought Discord from Cassandra’s hot partitions to ScyllaDB’s consistent latencies.
+
+In order to improve efficiency and reduce latencies, Discord engineers built a data service library to streamline queries going to and from the database. This would limit the number of requests putting stress on the database infrastructure.
+
+They also created a “Superdisk” made of persistent disks and NVMe SSDs to optimize their hardware for both speed and efficiency. Lastly, modifications were made to ScyllaDB to increase compatibility with the Superdisk. The end result is consistent latencies in a highly trafficked cluster.
+
+Cassandra was working to a point, but the bigger Discord grew, the more difficult it became to support the NoSQL store. Discord experienced cascading latencies caused by Cassandra’s hot partitions caused cascading latencies when high traffic was driven to one partition. Garbage collection was another issue. “We really don’t like garbage collection,” Ingram confirmed.
+
+ScyllaDB caught the attention of Ingram and his team. “We were looking kind of jealously at ScyllaDB. We were very curious,” he said. ScyllaDB is written in C++, meaning there is no garbage collection which, to Ingram, “sounds like a dream.”
+
+In 2022, Discord migrated most of its data to ScyllaDB. The core messaging database was the holdout because “we didn’t want to learn all our lessons with our messages database,” Ingram said. After gaining more experience with and learning how to best to optimize ScyllaDB, messages would move on over too.
+
+Here are some of the components:
+
+
+The Data Service Library
+
+
+Building the data service library was the first step in simplifying the messages workflow. Written in Rust, it sits between the API and Cassandra and communicates via gRPC. The Data Service Library protects the database and serves its main purpose as request coalescing.
+
+
+
+Request coalescing reduces multiple requests for the same message into a single database query by using a worker thread. When a giant server with tons of users makes a big announcement that pings tons of people who then open their apps/computers to check out the details, a worker thread is spun up in response to the requests that come in. The worker thread queries the database once and returns the message to all subscribed requests.
+
+
+
+The upstream of request coalescing is consistent routing, which is what makes request coalescing possible. In the image above, Discord uses Channel ID, but in reality any routing is available. All requests that go to a specific channel go via the same message instance. So in the big message scenario: same message, same channel. Same instance equals one query.
+
+Ingram credits Rust with making this happen. Rust, being the performant language that it is, “lets us handle this use case without breaking a sweat. It’s awesome,” he said.
+
+The Superdisk
+
+The disk contenders: the faster NVMe SSDs with higher risk of quorum loss and downtime vs. slower persistent disks, which could reignite cascading latencies. Neither were a good solution alone, but together they make the Superdisk!
+
+
+
+It started with a 1.5TB persistent disk which was then striped together with 1.5TB of local NMVe SSD RAID0. The RAID0 provided a large logical volume equivalent in size to the persistent disk. Discord then took the logical disk (RAID0) and combined it with the persistent disk via a RAID1 array. The RAID1 provided mirroring functionality so data on the RAID0 local SSDs matched the data on the persistent disk.
+
+The Superdisk in Action
+
+
+
+
+
+The persistent disks are marked as write mostly and reads go to the RAID1 array. Discord predominantly serves from the RAID0 SSDs.
+
+
+
+
+
+In the event of a host error, it’s safe to assume the loss of the local NVMe SSDs, but that’s OK now because disk mirroring provides a copy. Raid will execute a recovery operation to bring the SSDs back to parity with the persistent disks once they’re back up and running.
+
+It didn’t work perfectly out of the box. Discord worked with Scylla to implement Duplex IO, which allowed them to split reads and writes onto their own channels. The write intent bitmap was turned off.
+
+Time for the Migration
+The migration plan for the cassandra-messages database was straightforward — use ScyllaDB for recent data and migrate historical data behind it. Discord tuned ScyllaDB’s spark migrator and got ready to migrate. By this time (May 2022), Ingram had enough with what he called Cassandra “firefighting,” so when the ETA for the cassandra-messages migration turned out to be three months, he decided it was three months too long.
+
+Faster meant a rewrite of ScyllaDB’s data migrator in Rust. The rewrite took Ingram and two colleagues about a day, and it was faster! The updated data migrator sent 3.2 million records per second. Three months was reduced to just nine days.
+
+Data verification validation was performed once the data was sent over and sampled with random reads to make sure the data was consistent, equivalent and correct.
+
+Almost One Year Later, No Regrets
+
+ScyllaDB is more efficient and because of the higher storage density, it uses half the nodes of the Cassandra cluster. ScyllaDB’s better disk efficiency is measured in a 53% reduction in disk utilization. Latencies in Cassandra’s message cluster fell somewhere in the wide range of 5 to 500 milliseconds. With ScyllaDB, Ingram is sure “it’s five milliseconds on the dot. No microseconds… I’m going to be specific here.”

@@ -1,0 +1,109 @@
+How Discord Stores TRILLIONS of Messages
+
+Zahiruddin Tavargere's photo
+Zahiruddin Tavargere
+·
+Jul 29, 2023
+·
+4 min read
+
+If you are not familiar with Discord, here’s a quick introduction.
+
+Source: https://zahere.com/how-discord-stores-trillions-of-messages
+
+Discord is a voice, video, and text chat app that's used by tens of millions of people to talk and hang out with their communities and friends.
+
+The communities in Discord are called “Servers”.
+
+A server is a collection of persistent chat rooms and voice channels.
+
+Discord has over 350 million registered users and over 150 million monthly active users.
+
+The Context
+Discord has been storing trillions of messages in Scylla.
+
+Their growth over the years has led them to migrate from Mongo to Cassandra to Scylla in the span of 5 years.
+
+Let’s understand the problems and decision-making that led them to ScyllaDB.
+
+
+
+Why Did They Migrate From Mongo to Cassandra?
+Discord initially used MongoDB to store messages, but they faced several issues, including poor performance and scalability.
+
+MongoDB's architecture was not designed for the high write throughput that Discord required.
+
+As a result, in 2017, they migrated to Cassandra, which provided better write performance and scalability.
+
+The Problems Faced with Cassandra
+By 2022, the Cassandra ‘messages’ database grew almost 15x to 177 nodes with trillions of messages.
+
+With this growth came some problems…
+
+Unpredictable latency
+
+Very expensive maintenance operations
+
+On-call system under constant stress
+
+The Discord team zeroed down on one major cause. Partition.
+
+
+
+Discord partitioned messaged by the channel they’re sent in. In Cassandra, all messages for a given channel were stored together and replicated across three nodes.
+
+This approach to partitioning had a performance pitfall.
+
+A discord server with thousands of people sends an order of magnitude more messages than a server with a few hundred users. This leads to a scenario that the discord teams refers to as “Hot Partitions”.
+
+What are Hot Partitions?
+Hot partitions are a common issue in distributed databases.
+
+They occur when a single partition receives a disproportionate amount of traffic, causing performance issues.
+
+Hot partitions can be caused by a variety of factors, including uneven data distribution, poor partition key design, and high write throughput.
+
+The discord team observed that the hot partition affected latency across the entire database cluster.
+
+As one channel and bucket pair received large traffic, latency in the relevant node would increase leading to a broader end-user impact.
+
+The process of compaction in Cassandra would further add to the latency making the reads very expensive.
+
+Also, the discord team would constantly battle with JVM’s garbage collector as the garbage collector pauses would cause significant latency spikes.
+
+How did the Discord team tackle the above challenges?
+Optimize the data pipeline first.
+Discord wrote data services that sit between their API and database clusters, using Rust as the language of choice. Rust's awesome concurrency and libraries were a great match for the task.
+
+
+
+The big feature of these data services is request coalescing, which significantly reduces traffic spikes against the database.
+
+Request coalescing combines multiple simultaneous requests to the same resource into a single request going to the origin. If multiple requests come in at the same time, they will be automatically merged.
+
+Discord also implemented consistent hash-based routing to their data services to enable more effective coalescing.
+
+These improvements helped reduce the load on the database.
+
+Migrate to ScyllaDB
+Here’s how the Discord team migrated trillions of messages from Cassandra to Scylla.
+
+Provision a new ScyllaDB cluster using a super-disk storage topology.
+
+Dual-write new data to both Cassandra and ScyllaDB while concurrently setting up ScyllaDB's Spark migrator, a tool for data migration.
+
+They extended their data service library to perform large-scale data migrations, using Rust programming language, which reduced the estimated time from 3 months to 9 days.
+
+The migration encountered a challenge when it got stuck at 99.9999% complete due to large ranges of tombstones in the last few token ranges of data. The team resolved this by compacting the token range, and the migration was successfully completed.
+
+Automated data validation was performed by comparing a small percentage of reads from both databases, ensuring the data was accurately migrated. The ScyllaDB cluster performed well with full production traffic, while Cassandra experienced frequent latency issues.
+
+Performance Improvement
+Smooth operations: No more weekend firefights or node juggling.
+
+Optimized resources: 72 ScyllaDB nodes with 9 TB each, twice the storage capacity.
+
+Improved latency: Fetching messages faster with 15ms p99 latency.
+
+Conclusion
+Discord's message storage is a complex system that requires careful consideration of performance and scalability. By migrating to ScyllaDB, Discord was able to solve their hot partition issues and improve their overall performance.
