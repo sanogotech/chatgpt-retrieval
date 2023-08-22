@@ -103,6 +103,10 @@ Querying the database using math formulas to find the closest vectors in a high-
   - Approximate nearest neighbors (ANN)
   -
 * Indexing
+
+![Vector  Database](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/vectorDatabase.png)
+
+
 ## Installation
 
 ```
