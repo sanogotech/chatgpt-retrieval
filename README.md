@@ -112,6 +112,14 @@ Data lakes, ML Ops, feature stores - these are all common buzzwords trying to so
 
 Pinecone is a fully managed, SaaS solution for this piece of the puzzle - the vector database. While the concept of the vector database has been used by many large tech companies for years, these sorts of companies have built their own proprietary, deep learning ANN indexing algorithms to serve news feeds, advertisements, and recommendations. These infrastructures and algorithms require intensive resources and overhead that most companies can’t support. With its strict memory management, efficient multi-threading, and fast, reliable performance, this is where the Pinecone solution comes in.
 
+![Data Lake to Vector DB](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/DatalakeTopVectorDb.png)
+
+Most popular vector databases
+- Faiss (by Meta)
+- Pinecone
+- Milvus
+- Postgres (pg_vector)
+- Weaviate
 
 ## Installation
 
