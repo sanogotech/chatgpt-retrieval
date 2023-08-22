@@ -38,6 +38,8 @@ En résumé, bien que vous ne puissiez pas ajouter directement de nouvelles donn
 ## Using Langchain and Open Source Vector DB Chroma for Semantic Search with OpenAI's LLM
 
 * https://github.com/PradipNichite/Youtube-Tutorials/blob/main/Chroma_DB_with_Langchain.ipynb
+
+* https://blog.futuresmart.ai/using-langchain-and-open-source-vector-db-chroma-for-semantic-search-with-openais-llm
   
   ```
   pip install  openai langchain sentence_transformers chromadb unstructured -q
