@@ -60,6 +60,8 @@ db = Chroma.from_documents(docs, embeddings)
 
 ## Vector Database
 
+* https://dev.to/josethz00/vector-databases-5df1
+  
 With the rise of AI, vector databases are becoming more popular. But what exactly is a vector database and when should you use it?
 
 * What is a vector database?
