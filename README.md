@@ -38,10 +38,74 @@ En résumé, bien que vous ne puissiez pas ajouter directement de nouvelles donn
 ## Using Langchain and Open Source Vector DB Chroma for Semantic Search with OpenAI's LLM
 
 * https://github.com/PradipNichite/Youtube-Tutorials/blob/main/Chroma_DB_with_Langchain.ipynb
+
+* https://blog.futuresmart.ai/using-langchain-and-open-source-vector-db-chroma-for-semantic-search-with-openais-llm
   
   ```
   pip install  openai langchain sentence_transformers chromadb unstructured -q
    ```
+
+Creating Vector Store with Chroma DB
+Vector stores serve as a prevalent method for handling and searching through unstructured data. The standard process involves creating embeddings from the unstructured data, saving these generated vectors, and then, during a query, embedding the unstructured query to retrieve the 'most similar' vectors to this embedded query. The role of a vector store is primarily to facilitate this storage of embedded data and execute the similarity search.
+
+Importantly, Langchain offers support for various vector stores, including Chroma, Pinecone, and others. This flexibility enables users to choose the most suitable vector store based on their specific requirements and preferences.
+
+Let's create a vector store using the Chroma DB from the documents we loaded and split.
+
+
+  ```
+from langchain.vectorstores import Chroma
+db = Chroma.from_documents(docs, embeddings)
+  ```
+
+## Vector Database
+
+* https://dev.to/josethz00/vector-databases-5df1
+  
+With the rise of AI, vector databases are becoming more popular. But what exactly is a vector database and when should you use it?
+
+* What is a vector database?
+Traditional search engines use full-text search, but NLPs like ChatGPT and Bing AI use semantic search or similarity search, a type of search that considers not only the characters match, but also the meaning of the words. This feature of semantic search is powered by vector databases.
+
+ Recently Google also started using semantic search
+ 
+
+* Full-text search VS Semantic search
+Let's compare these two types of search.
+
+- Full-text search
+Search for a word or phrase in large amounts of text
+The search engine returns a list of documents that contain the search term
+
+```
+SELECT title, content
+FROM documents
+WHERE search_vector @@ plainto_tsquery('english', 'example search');
+
+```
+
+- Semantic search
+Search for a word or phrase in large amounts of text
+The search engine will return a list of documents that contain the search term or have a similar meaning.
+
+*  Ocean // Sea (mimilar meaning)
+  
+How the vector database knows which vectors are similar?
+
+Querying the database using math formulas to find the closest vectors in a high-dimensional space
+
+* Euclidean distance
+* Cosine similarity
+
+* Machine learning algorithms
+
+  - K-nearest neighbors (KNN)
+  - Approximate nearest neighbors (ANN)
+  -
+* Indexing
+
+![Vector  Database](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/vectorDatabase.png)
+
 
 ## Installation
 
