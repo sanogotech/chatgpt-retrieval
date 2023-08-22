@@ -114,6 +114,13 @@ Pinecone is a fully managed, SaaS solution for this piece of the puzzle - the ve
 
 ![Data Lake to Vector DB](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/DatalakeTopVectorDb.png)
 
+Most popular vector databases
+- Faiss (by Meta)
+- Pinecone
+- Milvus
+- Postgres (pg_vector)
+- Weaviate
+
 ## Installation
 
 ```
