@@ -107,6 +107,12 @@ Querying the database using math formulas to find the closest vectors in a high-
 ![Vector  Database](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/vectorDatabase.png)
 
 
+Data lakes, ML Ops, feature stores - these are all common buzzwords trying to solve similar sorts of problems. For example, let’s say you have a lot of unstructured data, and in order to gain insights you store it in blob storage. Historically, you would use an ML Ops platform, like a hosted Spark pipeline, for this. However, in many ways, we’re seeing the industry start to transition to the concept of vector databases and specifically approximate nearest neighbor (ANN) search to support similar use cases.
+
+
+Pinecone is a fully managed, SaaS solution for this piece of the puzzle - the vector database. While the concept of the vector database has been used by many large tech companies for years, these sorts of companies have built their own proprietary, deep learning ANN indexing algorithms to serve news feeds, advertisements, and recommendations. These infrastructures and algorithms require intensive resources and overhead that most companies can’t support. With its strict memory management, efficient multi-threading, and fast, reliable performance, this is where the Pinecone solution comes in.
+
+
 ## Installation
 
 ```
