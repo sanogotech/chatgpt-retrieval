@@ -152,3 +152,7 @@ Test reading `data/cat.pdf` file.
 > python chatgpt.py "what is my cat's name"
 Your cat's name is Muffy.
 ```
+
+## Start FastAPI
+
+uvicorn chatgptapirestfull:app
