@@ -18,6 +18,10 @@ Here's the [YouTube Video](https://youtu.be/9AXP7tCI9PI).
 
 - https://blog.nextideatech.com/chat-with-documents-using-langchain-gpt-4-python/
 
+##  Code Sample
+
+- https://github.com/sanogotech/AI_GPTSamples
+  
 ##   Le modèle GPT-3.5-turbo de OpenAI est utilisé pour générer des réponses, sans pour autant inclure de nouvelles données.
 
 
@@ -45,7 +49,9 @@ En résumé, bien que vous ne puissiez pas ajouter directement de nouvelles donn
   pip install  openai langchain sentence_transformers chromadb unstructured -q
    ```
 
-Creating Vector Store with Chroma DB
+![ChromaDB Process](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/chromadbLLM.png)
+
+* Creating Vector Store with Chroma DB
 Vector stores serve as a prevalent method for handling and searching through unstructured data. The standard process involves creating embeddings from the unstructured data, saving these generated vectors, and then, during a query, embedding the unstructured query to retrieve the 'most similar' vectors to this embedded query. The role of a vector store is primarily to facilitate this storage of embedded data and execute the similarity search.
 
 Importantly, Langchain offers support for various vector stores, including Chroma, Pinecone, and others. This flexibility enables users to choose the most suitable vector store based on their specific requirements and preferences.
@@ -120,6 +126,8 @@ Most popular vector databases
 - Milvus
 - Postgres (pg_vector)
 - Weaviate
+
+  ![ Data to Vector deep learning](https://github.com/sanogotech/chatgpt-retrieval/blob/main/images/deeplearningvector.png)
 
 ## Installation
 
