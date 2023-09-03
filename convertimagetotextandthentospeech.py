@@ -1,5 +1,6 @@
 """
 * https://www.geeksforgeeks.org/python-convert-image-to-text-and-then-to-speech/
+* https://linuxhint.com/install-tesseract-windows/
 
 Our goal is to convert a given text image into a string of text, saving it to a file and to hear what is written in the image through audio.
 
