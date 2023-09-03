@@ -8,7 +8,7 @@ import moviepy.editor as mp
 import speech_recognition as sr
 
 # Load the video
-video = mp.VideoFileClip("geeksforgeeks.mp4")
+video = mp.VideoFileClip("./videos/geeksforgeeks.mp4")
 
 # Extract the audio from the video
 audio_file = video.audio
